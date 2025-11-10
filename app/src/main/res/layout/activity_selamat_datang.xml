@@ -12,10 +12,34 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="fitXY"
         android:src="@drawable/rectagle_selamat_datang"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/iv_selamat_datang"
+        android:layout_width="431dp"
+        android:layout_height="42dp"
+        android:src="@drawable/font_selamat_datang"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
+
+    <ImageView
+        android:id="@+id/iv_pesan_selamat_datang"
+        android:layout_width="391dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/font_pesan_selamat_datang"
+        app:layout_constraintEnd_toEndOf="@+id/iv_selamat_datang"
+        app:layout_constraintStart_toStartOf="@+id/iv_selamat_datang"
+        app:layout_constraintTop_toBottomOf="@+id/iv_selamat_datang" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
