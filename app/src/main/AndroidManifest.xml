@@ -12,10 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LAYARXID">
         <activity
-            android:name=".SelamatDatang"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name="com.pab.tixid.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +20,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.pab.tixid.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.pab.tixid.SedangTayangActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.pab.tixid.SegeraHadirActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.pab.tixid.Membuat_Akun"
+            android:exported="false" />
+        <activity
+            android:name="com.pab.tixid.SelamatDatang"
+            android:exported="false" />
+        <activity
+            android:name="com.pab.tixid.MasukActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

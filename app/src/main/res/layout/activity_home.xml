@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0F20"
+    tools:context=".HomeActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_nav">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="welcome Adhim 👋"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Let's relax and watch a movie!"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_welcome" />
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/white_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/search_view_stroke_background"
+            android:fontFamily="@font/poppins_regular"
+            android:queryHint="Cari film..."
+            android:searchIcon="@drawable/ic_search_smaller"
+            app:layout_constraintEnd_toStartOf="@+id/iv_notification"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_subtitle" />
+
+        <ImageView
+            android:id="@+id/iv_notification"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/logo_notif"
+            app:layout_constraintBottom_toBottomOf="@+id/search_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/search_view" />
+
+
+        <TextView
+            android:id="@+id/tv_sedang_tayang_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Sedang Tayang"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_view" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_bioskop_tayang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sedang_tayang_title">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_semua_bioskop_tayang"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Semua Bioskop"
+                android:textColor="@color/chip_text_color_selector"
+                app:chipBackgroundColor="@color/chip_background_selector"
+                android:checked="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_xxi_tayang"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="XXI"
+                android:textColor="@color/chip_text_color_selector"
+                app:chipBackgroundColor="@color/chip_background_selector" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_cgv_tayang"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="CGV"
+                android:textColor="@color/chip_text_color_selector"
+                app:chipBackgroundColor="@color/chip_background_selector" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/tv_lihat_semua_tayang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/panah_ungu"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Lihat Semua"
+            android:textColor="#5D21D1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_sedang_tayang_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_sedang_tayang_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_sedang_tayang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Daftar film yang sedang tayang"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cg_bioskop_tayang" />
+
+        <TextView
+            android:id="@+id/tv_segera_hadir_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Segera Hadir"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_sedang_tayang" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_bioskop_hadir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_segera_hadir_title">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_semua_bioskop_hadir"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Semua Bioskop"
+                android:textColor="@color/chip_text_color_selector"
+                app:chipBackgroundColor="@color/chip_background_selector"
+                android:checked="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_xxi_hadir"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="XXI"
+                android:textColor="@color/chip_text_color_selector"
+                app:chipBackgroundColor="@color/chip_background_selector" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_cgv_hadir"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="CGV"
+                android:textColor="@color/chip_text_color_selector"
+                app:chipBackgroundColor="@color/chip_background_selector" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/tv_lihat_semua_hadir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/panah_ungu"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Lihat Semua"
+            android:textColor="#5D21D1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_segera_hadir_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_segera_hadir_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_segera_hadir"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Daftar film yang akan segera hadir"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cg_bioskop_hadir" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#0D0F20"
+        app:itemIconTint="@color/bottom_nav_item_color_selector"
+        app:itemTextColor="@color/bottom_nav_item_color_selector"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>

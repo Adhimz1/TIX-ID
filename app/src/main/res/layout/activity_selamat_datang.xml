@@ -2,79 +2,94 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_selamat_datang"
     tools:context=".SelamatDatang">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/rectagle_selamat_datang"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_selamat_datang"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:contentDescription="@null" />
 
-    <ImageView
-        android:id="@+id/iv_pesan_selamat_datang"
-        android:layout_width="385dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/font_pesan_selamat_datang"
-        app:layout_constraintEnd_toEndOf="@+id/iv_selamat_datang"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="@+id/iv_selamat_datang"
-        app:layout_constraintTop_toBottomOf="@+id/iv_selamat_datang" />
-
-    <ImageView
-        android:id="@+id/iv_selamat_datang"
-        android:layout_width="410dp"
-        android:layout_height="39dp"
-        android:src="@drawable/font_selamat_datang"
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectagle_selamat_datang"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.471" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Latar belakang untuk tombol Daftar -->
+    <TextView
+        android:id="@+id/tv_welcome_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Selamat Datang!"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_welcome_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Teks 'Daftar' di atas latar belakangnya -->
+    <TextView
+        android:id="@+id/tv_welcome_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Pesan tiket film favoritmu dengan cepat dan mudah di sini."
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_bg_daftar"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:src="@drawable/rectagle1"
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageView
-        android:id="@+id/iv_font_daftar"
-        android:layout_width="78dp"
-        android:layout_height="16dp"
-        android:src="@drawable/font_daftar"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_daftar"
-        app:layout_constraintEnd_toEndOf="@+id/iv_bg_daftar"
-        app:layout_constraintStart_toStartOf="@+id/iv_bg_daftar"
-        app:layout_constraintTop_toTopOf="@+id/iv_bg_daftar" />
+        <Button
+            android:id="@+id/btn_masuk_welcome"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Masuk"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
 
-    <!-- Teks 'Masuk' -->
-    <ImageView
-        android:id="@+id/iv_masuk"
-        android:layout_width="78dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="32dp"
-        android:src="@drawable/masuk"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_daftar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_bg_daftar" />
+        <Button
+            android:id="@+id/btn_daftar_welcome"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#5D21D1"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Daftar"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

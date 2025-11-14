@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_beranda"
+        android:icon="@drawable/logo_beranda"
+        android:title="Beranda" />
+    <item
+        android:id="@+id/nav_bioskop"
+        android:icon="@drawable/logo_bioskop"
+        android:title="Bioskop" />
+    <item
+        android:id="@+id/nav_tiket"
+        android:icon="@drawable/logo_tiket"
+        android:title="Tiket" />
+    <item
+        android:id="@+id/nav_akun"
+        android:icon="@drawable/logo_akun"
+        android:title="Akun" />
+</menu>
