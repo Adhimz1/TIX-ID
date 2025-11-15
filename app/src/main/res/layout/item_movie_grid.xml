@@ -33,28 +33,31 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp">
 
+
             <Button
                 android:id="@+id/btn_beli_tiket"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_beli_tiket"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Beli Tiket"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:visibility="gone" />
-
+                app:backgroundTint="@null"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Beli Tiket"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
             <TextView
                 android:id="@+id/tv_watchlist"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/button_watchlist"
                 android:drawableStart="@drawable/ic_add_to_watchlist"
-                android:drawablePadding="8dp"
+                android:drawablePadding="6dp"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:text="Watchlist"
-                android:textColor="#5D21D1"
+                android:textColor="@android:color/white"
                 android:visibility="gone" />
         </FrameLayout>
     </LinearLayout>

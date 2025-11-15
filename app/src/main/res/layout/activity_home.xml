@@ -58,6 +58,7 @@
             android:queryHint="Cari film..."
             android:searchIcon="@drawable/ic_search_smaller"
             app:layout_constraintEnd_toStartOf="@+id/iv_notification"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_subtitle" />
 
@@ -134,7 +135,7 @@
             android:drawablePadding="8dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Lihat Semua"
-            android:textColor="#5D21D1"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/tv_sedang_tayang_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_sedang_tayang_title" />
@@ -212,7 +213,7 @@
             android:drawablePadding="8dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Lihat Semua"
-            android:textColor="#5D21D1"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/tv_segera_hadir_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_segera_hadir_title" />
