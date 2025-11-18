@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pab.tixid.databinding.ActivityHomeBinding
 
@@ -26,6 +27,9 @@ class HomeActivity : AppCompatActivity() {
         val end = start + "Adhim".length
         spannable.setSpan(ForegroundColorSpan(Color.parseColor("#5D21D1")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvWelcome.text = spannable
+
+        // Customize SearchView hint text
+        customizeSearchView(binding.searchView)
 
         // Sedang Tayang RecyclerView
         val moviesSedangTayang = listOf(
@@ -59,5 +63,27 @@ class HomeActivity : AppCompatActivity() {
 
         // Set selected item in BottomNavigationView
         binding.bottomNav.selectedItemId = R.id.nav_home
+
+        binding.bottomNav.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_bioskop -> {
+                    val intent = Intent(this, BioskopActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                    startActivity(intent)
+                    finish()
+                    true
+                }
+                R.id.nav_home -> true // Already on home, do nothing
+                else -> false
+            }
+        }
+    }
+
+    private fun customizeSearchView(searchView: SearchView) {
+        val searchTextView = searchView.findViewById<android.widget.TextView>(
+            searchView.context.resources.getIdentifier("android:id/search_src_text", null, null)
+        )
+        searchTextView?.setHintTextColor(Color.parseColor("#80FFFFFF")) // 50% opacity white
+        searchTextView?.textSize = 14f
     }
 }

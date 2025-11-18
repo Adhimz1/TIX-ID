@@ -24,6 +24,9 @@
             android:name="com.pab.tixid.HomeActivity"
             android:exported="false" />
         <activity
+            android:name="com.pab.tixid.BioskopActivity"
+            android:exported="false" />
+        <activity
             android:name="com.pab.tixid.SedangTayangActivity"
             android:exported="false" />
         <activity

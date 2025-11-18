@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/logo_beranda"
+        android:icon="@drawable/bottom_nav_beranda_selector"
         android:title="Beranda" />
     <item
         android:id="@+id/nav_bioskop"
-        android:icon="@drawable/logo_bioskop"
+        android:icon="@drawable/bottom_nav_bioskop_selector"
         android:title="Bioskop" />
     <item
         android:id="@+id/nav_tiket"
