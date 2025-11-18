@@ -1,7 +1,9 @@
 package com.pab.tixid
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
@@ -14,17 +16,27 @@ import com.pab.tixid.databinding.ActivityHomeBinding
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Change color of "Adhim"
-        val fullText = "welcome Adhim 👋"
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE)
+
+        // Load profile image
+        loadProfileImage()
+
+        // Get user name from SharedPreferences
+        val userName = sharedPreferences.getString("user_name", "User") ?: "User"
+
+        // Change color of user name
+        val fullText = "welcome $userName 👋"
         val spannable = SpannableString(fullText)
-        val start = fullText.indexOf("Adhim")
-        val end = start + "Adhim".length
+        val start = fullText.indexOf(userName)
+        val end = start + userName.length
         spannable.setSpan(ForegroundColorSpan(Color.parseColor("#5D21D1")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvWelcome.text = spannable
 
@@ -64,7 +76,7 @@ class HomeActivity : AppCompatActivity() {
         // Set selected item in BottomNavigationView
         binding.bottomNav.selectedItemId = R.id.nav_home
 
-        binding.bottomNav.setOnNavigationItemSelectedListener {
+        binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_bioskop -> {
                     val intent = Intent(this, BioskopActivity::class.java)
@@ -73,8 +85,38 @@ class HomeActivity : AppCompatActivity() {
                     finish()
                     true
                 }
+                R.id.nav_akun -> {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                    startActivity(intent)
+                    finish()
+                    true
+                }
                 R.id.nav_home -> true // Already on home, do nothing
                 else -> false
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadProfileImage()
+    }
+
+    private fun loadProfileImage() {
+        val savedImageUri = sharedPreferences.getString("profile_image_uri", null)
+        savedImageUri?.let {
+            try {
+                val uri = Uri.parse(it)
+                // Add this line to take persistable URI permission
+                contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                binding.ivProfile.setImageURI(uri)
+            } catch (e: SecurityException) {
+                e.printStackTrace()
+                // Handle the case where permission is lost (e.g., show a default image)
+                binding.ivProfile.setImageResource(R.drawable.ic_akun)
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

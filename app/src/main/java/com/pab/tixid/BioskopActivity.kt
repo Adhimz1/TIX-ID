@@ -35,6 +35,13 @@ class BioskopActivity : AppCompatActivity() {
                     finish()
                     true
                 }
+                R.id.nav_akun -> {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                    startActivity(intent)
+                    finish()
+                    true
+                }
                 R.id.nav_bioskop -> true // Already on bioskop, do nothing
                 else -> false
             }

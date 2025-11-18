@@ -44,6 +44,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/white_circle"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"
+            android:contentDescription="User Profile Picture"
+            android:src="@drawable/white_circle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

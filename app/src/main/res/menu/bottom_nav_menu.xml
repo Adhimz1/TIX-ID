@@ -13,6 +13,6 @@
         android:title="Tiket" />
     <item
         android:id="@+id/nav_akun"
-        android:icon="@drawable/logo_akun"
+        android:icon="@drawable/bottom_nav_akun_selector"
         android:title="Akun" />
 </menu>
