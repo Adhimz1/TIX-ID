@@ -122,7 +122,8 @@ class ProfileActivity : AppCompatActivity() {
 
         // Film Saya
         binding.llFilmSaya.setOnClickListener {
-            Toast.makeText(this, "Film Saya clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, FilmSayaActivity::class.java)
+            startActivity(intent)
         }
 
         // Keluar (Logout)

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="#1F2937"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Poster with Remove Button -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_watchlist_poster"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="Movie Poster" />
+
+            <!-- Remove from Watchlist Button -->
+            <ImageView
+                android:id="@+id/iv_remove_watchlist"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="8dp"
+                android:background="@drawable/white_circle"
+                android:backgroundTint="#80000000"
+                android:padding="6dp"
+                android:src="@drawable/ic_add_to_watchlist"
+                app:tint="#FF0000"
+                android:contentDescription="Remove from Watchlist" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_watchlist_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="Movie Title"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_watchlist_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rating_background"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="R13+"
+                android:textColor="@android:color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_watchlist_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="115 Menit"
+                android:textColor="#9CA3AF"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_watchlist_genre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="Action, Adventure"
+            android:textColor="#9CA3AF"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+

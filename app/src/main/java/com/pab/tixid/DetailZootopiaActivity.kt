@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 
 class DetailZootopiaActivity : AppCompatActivity() {
 
@@ -16,6 +17,7 @@ class DetailZootopiaActivity : AppCompatActivity() {
         val ivBack = findViewById<ImageView>(R.id.iv_back)
         val ivTrailerThumbnail = findViewById<ImageView>(R.id.iv_trailer_thumbnail)
         val cvTrailer = findViewById<androidx.cardview.widget.CardView>(R.id.cv_trailer)
+        val btnWatchlist = findViewById<MaterialButton>(R.id.btn_watchlist)
 
         // YouTube video ID: sEgPQ7HKoBA
         val videoId = "sEgPQ7HKoBA"
@@ -34,6 +36,20 @@ class DetailZootopiaActivity : AppCompatActivity() {
         ivBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
+
+        // Setup Watchlist
+        WatchlistHelper.setupWatchlistButton(
+            this,
+            btnWatchlist,
+            "Zootopia",
+            WatchlistMovie(
+                title = "Zootopia",
+                poster = R.drawable.poster_zootopia,
+                duration = "108 Menit",
+                genre = "Animasi, Komedi, Petualangan",
+                rating = "SU"
+            )
+        )
     }
 }
 

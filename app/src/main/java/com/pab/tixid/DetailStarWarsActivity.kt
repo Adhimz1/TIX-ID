@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 
 class DetailStarWarsActivity : AppCompatActivity() {
 
@@ -16,6 +17,7 @@ class DetailStarWarsActivity : AppCompatActivity() {
         val ivBack = findViewById<ImageView>(R.id.iv_back)
         val ivTrailerThumbnail = findViewById<ImageView>(R.id.iv_trailer_thumbnail)
         val cvTrailer = findViewById<androidx.cardview.widget.CardView>(R.id.cv_trailer)
+        val btnWatchlist = findViewById<MaterialButton>(R.id.btn_watchlist)
 
         // YouTube video ID: 8Qn_spdM5Zg
         val videoId = "8Qn_spdM5Zg"
@@ -34,6 +36,20 @@ class DetailStarWarsActivity : AppCompatActivity() {
         ivBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
+
+        // Setup Watchlist
+        WatchlistHelper.setupWatchlistButton(
+            this,
+            btnWatchlist,
+            "Star Wars",
+            WatchlistMovie(
+                title = "Star Wars",
+                poster = R.drawable.poster_starwars,
+                duration = "138 Menit",
+                genre = "Sci-Fi, Petualangan, Aksi",
+                rating = "R13+"
+            )
+        )
     }
 }
 

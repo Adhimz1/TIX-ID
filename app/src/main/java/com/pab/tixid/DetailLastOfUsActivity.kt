@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 
 class DetailLastOfUsActivity : AppCompatActivity() {
 
@@ -16,6 +17,7 @@ class DetailLastOfUsActivity : AppCompatActivity() {
         val ivBack = findViewById<ImageView>(R.id.iv_back)
         val ivTrailerThumbnail = findViewById<ImageView>(R.id.iv_trailer_thumbnail)
         val cvTrailer = findViewById<androidx.cardview.widget.CardView>(R.id.cv_trailer)
+        val btnWatchlist = findViewById<MaterialButton>(R.id.btn_watchlist)
 
         // YouTube video ID: uLtkt8BonwM
         val videoId = "uLtkt8BonwM"
@@ -34,6 +36,20 @@ class DetailLastOfUsActivity : AppCompatActivity() {
         ivBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
+
+        // Setup Watchlist
+        WatchlistHelper.setupWatchlistButton(
+            this,
+            btnWatchlist,
+            "The Last of Us",
+            WatchlistMovie(
+                title = "The Last of Us",
+                poster = R.drawable.poster_thelastofus,
+                duration = "81 Menit",
+                genre = "Drama, Aksi, Thriller, Sci-Fi",
+                rating = "D17+"
+            )
+        )
     }
 }
 

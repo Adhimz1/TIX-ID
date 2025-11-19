@@ -73,6 +73,9 @@
         <activity
             android:name=".DetailLastOfUsActivity"
             android:exported="false" />
+        <activity
+            android:name=".FilmSayaActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
