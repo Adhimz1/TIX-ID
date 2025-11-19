@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">LAYARXID</string>
     <string name="logo_desc">App logo</string>
+    <string name="back_button">Back</string>
+    <string name="share">Share</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="cast_photo">Cast Photo</string>
+    <string name="movie_photo">Movie Photo</string>
+    <string name="star_rating">Star Rating</string>
 </resources>

@@ -74,6 +74,12 @@
             android:name=".DetailLastOfUsActivity"
             android:exported="false" />
         <activity
+            android:name=".DetailSpidermanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JadwalSpidermanActivity"
+            android:exported="false" />
+        <activity
             android:name=".FilmSayaActivity"
             android:exported="false" />
 

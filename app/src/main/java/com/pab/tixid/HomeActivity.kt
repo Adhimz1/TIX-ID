@@ -52,9 +52,15 @@ class HomeActivity : AppCompatActivity() {
 
         binding.rvSedangTayang.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvSedangTayang.adapter = MovieAdapter(moviesSedangTayang) { movie ->
-            if (movie.title == "Mulan") {
-                val intent = Intent(this, DetailMulanActivity::class.java)
-                startActivity(intent)
+            when (movie.title) {
+                "Mulan" -> {
+                    val intent = Intent(this, DetailMulanActivity::class.java)
+                    startActivity(intent)
+                }
+                "Spider-Man: Far From Home" -> {
+                    val intent = Intent(this, DetailSpidermanActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
 
