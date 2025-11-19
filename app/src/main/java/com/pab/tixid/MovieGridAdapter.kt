@@ -6,8 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pab.tixid.databinding.ItemMovieGridBinding
 
-class MovieGridAdapter(private val movies: List<Movie>, private val isSedangTayang: Boolean) :
-    RecyclerView.Adapter<MovieGridAdapter.MovieViewHolder>() {
+class MovieGridAdapter(
+    private val movies: List<Movie>,
+    private val isSedangTayang: Boolean,
+    private val onItemClick: (Movie) -> Unit
+) : RecyclerView.Adapter<MovieGridAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieGridBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,12 +28,19 @@ class MovieGridAdapter(private val movies: List<Movie>, private val isSedangTaya
             binding.ivMoviePoster.setImageResource(movie.poster)
             binding.tvMovieTitle.text = movie.title
 
+            // Show appropriate button based on movie type
             if (isSedangTayang) {
+                // Sedang Tayang - show Beli Tiket button
                 binding.btnBeliTiket.visibility = View.VISIBLE
                 binding.tvWatchlist.visibility = View.GONE
             } else {
+                // Segera Hadir - show Watchlist button
                 binding.btnBeliTiket.visibility = View.GONE
                 binding.tvWatchlist.visibility = View.VISIBLE
+            }
+
+            itemView.setOnClickListener {
+                onItemClick(movie)
             }
         }
     }

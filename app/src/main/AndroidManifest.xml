@@ -9,6 +9,7 @@
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
@@ -53,6 +54,24 @@
             android:exported="false" />
         <activity
             android:name="com.pab.tixid.MasukActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailMulanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailPotterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailStarWarsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailLionKingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailZootopiaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailLastOfUsActivity"
             android:exported="false" />
 
         <provider

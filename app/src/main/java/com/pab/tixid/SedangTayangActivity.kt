@@ -3,7 +3,6 @@ package com.pab.tixid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.pab.tixid.databinding.ActivitySedangTayangBinding
 
 class SedangTayangActivity : AppCompatActivity() {
@@ -28,7 +27,9 @@ class SedangTayangActivity : AppCompatActivity() {
             Movie("DEADPOOL", R.drawable.poster_deadpool)
         )
 
-        val adapter = MovieGridAdapter(movies, isSedangTayang = true)
+        val adapter = MovieGridAdapter(movies, true) { movie ->
+            // Handle movie click for Sedang Tayang
+        }
         binding.rvMoviesGrid.layoutManager = GridLayoutManager(this, 2)
         binding.rvMoviesGrid.adapter = adapter
     }

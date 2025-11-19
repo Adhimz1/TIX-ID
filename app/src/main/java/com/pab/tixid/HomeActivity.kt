@@ -51,7 +51,12 @@ class HomeActivity : AppCompatActivity() {
         )
 
         binding.rvSedangTayang.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvSedangTayang.adapter = MovieAdapter(moviesSedangTayang)
+        binding.rvSedangTayang.adapter = MovieAdapter(moviesSedangTayang) { movie ->
+            if (movie.title == "Mulan") {
+                val intent = Intent(this, DetailMulanActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
         // Segera Hadir RecyclerView
         val moviesSegeraHadir = listOf(
@@ -61,7 +66,22 @@ class HomeActivity : AppCompatActivity() {
         )
 
         binding.rvSegeraHadir.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvSegeraHadir.adapter = MovieAdapter(moviesSegeraHadir)
+        binding.rvSegeraHadir.adapter = MovieAdapter(moviesSegeraHadir) { movie ->
+            when (movie.title) {
+                "Mulan" -> {
+                    val intent = Intent(this, DetailMulanActivity::class.java)
+                    startActivity(intent)
+                }
+                "Harry Potter" -> {
+                    val intent = Intent(this, DetailPotterActivity::class.java)
+                    startActivity(intent)
+                }
+                "Star Wars" -> {
+                    val intent = Intent(this, DetailStarWarsActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }
 
         binding.tvLihatSemuaTayang.setOnClickListener {
             val intent = Intent(this, SedangTayangActivity::class.java)

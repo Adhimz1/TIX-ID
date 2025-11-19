@@ -1,9 +1,9 @@
 package com.pab.tixid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.pab.tixid.databinding.ActivitySegeraHadirBinding
 
 class SegeraHadirActivity : AppCompatActivity() {
@@ -22,13 +22,32 @@ class SegeraHadirActivity : AppCompatActivity() {
         }
 
         val movies = listOf(
-            Movie("MULAN", R.drawable.poster_mulan),
+            Movie("Mulan", R.drawable.poster_mulan),
             Movie("THE LION KING", R.drawable.poster_thelionking),
             Movie("ZOOTOPIA", R.drawable.poster_zootopia),
             Movie("THE LAST OF US", R.drawable.poster_thelastofus)
         )
 
-        val adapter = MovieGridAdapter(movies, isSedangTayang = false)
+        val adapter = MovieGridAdapter(movies, false) { movie ->
+            when (movie.title) {
+                "Mulan" -> {
+                    val intent = Intent(this, DetailMulanActivity::class.java)
+                    startActivity(intent)
+                }
+                "THE LION KING" -> {
+                    val intent = Intent(this, DetailLionKingActivity::class.java)
+                    startActivity(intent)
+                }
+                "ZOOTOPIA" -> {
+                    val intent = Intent(this, DetailZootopiaActivity::class.java)
+                    startActivity(intent)
+                }
+                "THE LAST OF US" -> {
+                    val intent = Intent(this, DetailLastOfUsActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }
         binding.rvMoviesGrid.layoutManager = GridLayoutManager(this, 2)
         binding.rvMoviesGrid.adapter = adapter
     }
