@@ -96,9 +96,9 @@ Baca file-file ini secara berurutan:
 - Indexes
 
 ### [backend_api/config.example.php](backend_api/config.example.php)
-**Template konfigurasi database**
-- Salin dengan perintah: `cp backend_api/config.example.php backend_api/config.php`
-- Isi kredensial database lokal (JANGAN di-commit ke Git)
+**Database configuration template**
+- Copy locally: `cp backend_api/config.example.php backend_api/config.php`
+- Fill in local DB credentials (do NOT commit to Git)
 
 ### [backend_api/register.php](backend_api/register.php)
 **User registration endpoint**
