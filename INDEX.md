@@ -97,8 +97,8 @@ Baca file-file ini secara berurutan:
 
 ### [backend_api/config.example.php](backend_api/config.example.php)
 **Template konfigurasi database**
-- Copy ke `config.php` di lokal
-- Isi kredensial database (JANGAN di-commit)
+- Salin dengan perintah: `cp backend_api/config.example.php backend_api/config.php`
+- Isi kredensial database lokal (JANGAN di-commit ke Git)
 
 ### [backend_api/register.php](backend_api/register.php)
 **User registration endpoint**
