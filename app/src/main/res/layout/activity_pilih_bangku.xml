@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A15"
+    tools:context=".PilihBangkuActivity">
+
+    <!-- Header Section -->
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Back"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/white" />
+
+    <LinearLayout
+        android:id="@+id/ll_header_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/iv_back"
+        app:layout_constraintStart_toEndOf="@id/iv_back"
+        app:layout_constraintTop_toTopOf="@id/iv_back">
+
+        <TextView
+            android:id="@+id/tv_cinema_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="CSB XXI CIREBON"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="02 Nov | 12:45"
+            android:textColor="#9CA3AF"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Screen Section - Garis Lengkung Ungu (Layar Bioskop) -->
+    <ImageView
+        android:id="@+id/iv_screen"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="Screen"
+        android:scaleType="fitXY"
+        android:src="@drawable/garis_lengkung_ungu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_header_text" />
+
+    <!-- Teks LAYAR BIOSKOP -->
+    <TextView
+        android:id="@+id/tv_layar_bioskop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppins_regular"
+        android:letterSpacing="0.2"
+        android:text="LAYAR BIOSKOP"
+        android:textColor="#6B7280"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_screen" />
+
+    <!-- Seat Layout (Scrollable) - Between layar bioskop text and legend -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/ll_legend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_layar_bioskop">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/ll_seat_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp">
+
+                <!-- Row A -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="A1" />
+                    <TextView style="@style/Seat" android:text="A2" />
+                    <TextView style="@style/Seat" android:text="A3" />
+                    <TextView style="@style/Seat" android:text="A4" />
+                    <TextView style="@style/Seat" android:text="A5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="A6" />
+                    <TextView style="@style/Seat" android:text="A7" />
+                    <TextView style="@style/Seat" android:text="A8" />
+                    <TextView style="@style/Seat" android:text="A9" />
+                    <TextView style="@style/Seat" android:text="A10" />
+                </LinearLayout>
+
+                <!-- Row B -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="B1" />
+                    <TextView style="@style/Seat" android:text="B2" />
+                    <TextView style="@style/Seat" android:text="B3" />
+                    <TextView style="@style/Seat" android:text="B4" />
+                    <TextView style="@style/Seat" android:text="B5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="B6" />
+                    <TextView style="@style/Seat" android:text="B7" />
+                    <TextView style="@style/Seat" android:text="B8" />
+                    <TextView style="@style/Seat" android:text="B9" />
+                    <TextView style="@style/Seat" android:text="B10" />
+                </LinearLayout>
+
+                <!-- Row C -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="C1" />
+                    <TextView style="@style/Seat" android:text="C2" />
+                    <TextView style="@style/Seat" android:text="C3" />
+                    <TextView style="@style/Seat" android:text="C4" />
+                    <TextView style="@style/Seat" android:text="C5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="C6" />
+                    <TextView style="@style/Seat" android:text="C7" />
+                    <TextView style="@style/Seat" android:text="C8" />
+                    <TextView style="@style/Seat" android:text="C9" />
+                    <TextView style="@style/Seat" android:text="C10" />
+                </LinearLayout>
+
+                <!-- Row D -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="D1" />
+                    <TextView style="@style/Seat" android:text="D2" />
+                    <TextView style="@style/Seat" android:text="D3" />
+                    <TextView style="@style/Seat" android:text="D4" />
+                    <TextView style="@style/Seat" android:text="D5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="D6" />
+                    <TextView style="@style/Seat" android:text="D7" />
+                    <TextView style="@style/Seat" android:text="D8" />
+                    <TextView style="@style/Seat" android:text="D9" />
+                    <TextView style="@style/Seat" android:text="D10" />
+                </LinearLayout>
+
+                <!-- Row E -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="E1" />
+                    <TextView style="@style/Seat" android:text="E2" />
+                    <TextView style="@style/Seat" android:text="E3" />
+                    <TextView style="@style/Seat" android:text="E4" />
+                    <TextView style="@style/Seat" android:text="E5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="E6" />
+                    <TextView style="@style/Seat" android:text="E7" />
+                    <TextView style="@style/Seat" android:text="E8" />
+                    <TextView style="@style/Seat" android:text="E9" />
+                    <TextView style="@style/Seat" android:text="E10" />
+                </LinearLayout>
+
+                <!-- Row F -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="F1" />
+                    <TextView style="@style/Seat" android:text="F2" />
+                    <TextView style="@style/Seat" android:text="F3" />
+                    <TextView style="@style/Seat" android:text="F4" />
+                    <TextView style="@style/Seat" android:text="F5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="F6" />
+                    <TextView style="@style/Seat" android:text="F7" />
+                    <TextView style="@style/Seat" android:text="F8" />
+                    <TextView style="@style/Seat" android:text="F9" />
+                    <TextView style="@style/Seat" android:text="F10" />
+                </LinearLayout>
+
+                <!-- Row G -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="G1" />
+                    <TextView style="@style/Seat" android:text="G2" />
+                    <TextView style="@style/Seat" android:text="G3" />
+                    <TextView style="@style/Seat" android:text="G4" />
+                    <TextView style="@style/Seat" android:text="G5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="G6" />
+                    <TextView style="@style/Seat" android:text="G7" />
+                    <TextView style="@style/Seat" android:text="G8" />
+                    <TextView style="@style/Seat" android:text="G9" />
+                    <TextView style="@style/Seat" android:text="G10" />
+                </LinearLayout>
+
+                <!-- Row H -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="H1" />
+                    <TextView style="@style/Seat" android:text="H2" />
+                    <TextView style="@style/Seat" android:text="H3" />
+                    <TextView style="@style/Seat" android:text="H4" />
+                    <TextView style="@style/Seat" android:text="H5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="H6" />
+                    <TextView style="@style/Seat" android:text="H7" />
+                    <TextView style="@style/Seat" android:text="H8" />
+                    <TextView style="@style/Seat" android:text="H9" />
+                    <TextView style="@style/Seat" android:text="H10" />
+                </LinearLayout>
+
+                <!-- Row I -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="I1" />
+                    <TextView style="@style/Seat" android:text="I2" />
+                    <TextView style="@style/Seat" android:text="I3" />
+                    <TextView style="@style/Seat" android:text="I4" />
+                    <TextView style="@style/Seat" android:text="I5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="I6" />
+                    <TextView style="@style/Seat" android:text="I7" />
+                    <TextView style="@style/Seat" android:text="I8" />
+                    <TextView style="@style/Seat" android:text="I9" />
+                    <TextView style="@style/Seat" android:text="I10" />
+                </LinearLayout>
+
+                <!-- Row J -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView style="@style/Seat" android:text="J1" />
+                    <TextView style="@style/Seat" android:text="J2" />
+                    <TextView style="@style/Seat" android:text="J3" />
+                    <TextView style="@style/Seat" android:text="J4" />
+                    <TextView style="@style/Seat" android:text="J5" />
+                    <Space android:layout_width="12dp" android:layout_height="0dp" />
+                    <TextView style="@style/Seat" android:text="J6" />
+                    <TextView style="@style/Seat" android:text="J7" />
+                    <TextView style="@style/Seat" android:text="J8" />
+                    <TextView style="@style/Seat" android:text="J9" />
+                    <TextView style="@style/Seat" android:text="J10" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+    <!-- Bottom Container (Summary + Button) - Fixed at bottom -->
+    <LinearLayout
+        android:id="@+id/ll_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0A0A15"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#1F1F1F" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp">
+
+            <!-- Price Column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="TOTAL HARGA"
+                    android:textColor="#9CA3AF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_total_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Rp0"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:background="#1F1F1F" />
+
+            <!-- Seat Column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="TEMPAT DUDUK"
+                    android:textColor="#9CA3AF"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_selected_seats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Kursi belum dipilih"
+                    android:textColor="#9CA3AF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_order_summary"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="RINGKASAN ORDER"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:backgroundTint="#000000"
+            app:cornerRadius="12dp"
+            app:strokeColor="#7700FF"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+
+    <!-- Legend Section - Above bottom container -->
+    <LinearLayout
+        android:id="@+id/ll_legend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/ll_bottom_container">
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/seat_available_border" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Tersedia"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/seat_unavailable" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Tidak Tersedia"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/seat_selected" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Pilihanmu"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

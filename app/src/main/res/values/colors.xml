@@ -5,4 +5,11 @@
     <color name="chip_background_unselected">#2C2C3E</color>
     <!-- res/values/colors.xml -->
     <color name="warna_ungu_anda">#7700FF</color>
+
+    <!-- Admin Dashboard Colors -->
+    <color name="purple_500">#7700FF</color>
+    <color name="background_dark">#121212</color>
+    <color name="card_background">#1E1E1E</color>
+    <color name="yellow">#FFC107</color>
 </resources>
+

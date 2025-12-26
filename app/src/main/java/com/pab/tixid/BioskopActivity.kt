@@ -26,7 +26,7 @@ class BioskopActivity : AppCompatActivity() {
         // Set selected item in BottomNavigationView
         binding.bottomNav.selectedItemId = R.id.nav_bioskop
 
-        binding.bottomNav.setOnNavigationItemSelectedListener {
+        binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> {
                     val intent = Intent(this, HomeActivity::class.java)

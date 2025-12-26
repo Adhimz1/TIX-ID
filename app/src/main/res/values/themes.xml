@@ -27,4 +27,16 @@
         <item name="android:textColorHint">#80FFFFFF</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="Seat">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:background">@drawable/seat_available_border</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">6sp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
 </resources>

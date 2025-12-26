@@ -14,7 +14,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.lifecycle.lifecycleScope
 import com.pab.tixid.databinding.ActivityProfileBinding
+import com.pab.tixid.utils.UserPreferences
+import kotlinx.coroutines.launch
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,6 +26,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var userPreferences: UserPreferences
     private var currentPhotoUri: Uri? = null
 
     // Gallery picker launcher
@@ -62,8 +66,9 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize SharedPreferences
+        // Initialize SharedPreferences and UserPreferences
         sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE)
+        userPreferences = UserPreferences(this)
 
         // Set selected item in BottomNavigationView
         binding.bottomNav.selectedItemId = R.id.nav_akun
@@ -79,11 +84,21 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun loadUserData() {
-        val userName = sharedPreferences.getString("user_name", "User") ?: "User"
-        val userEmail = sharedPreferences.getString("user_email", "email@example.com") ?: "email@example.com"
-
-        binding.tvUserName.text = userName
-        binding.tvUserEmail.text = userEmail
+        // Load from UserPreferences (DataStore)
+        lifecycleScope.launch {
+            userPreferences.userFlow.collect { user ->
+                if (user != null) {
+                    binding.tvUserName.text = user.name
+                    binding.tvUserEmail.text = user.email
+                } else {
+                    // Fallback to old SharedPreferences if exists
+                    val userName = sharedPreferences.getString("user_name", "User") ?: "User"
+                    val userEmail = sharedPreferences.getString("user_email", "email@example.com") ?: "email@example.com"
+                    binding.tvUserName.text = userName
+                    binding.tvUserEmail.text = userEmail
+                }
+            }
+        }
     }
 
     private fun loadProfileImage() {
@@ -241,16 +256,21 @@ class ProfileActivity : AppCompatActivity() {
             .setTitle("Keluar")
             .setMessage("Apakah Anda yakin ingin keluar?")
             .setPositiveButton("Ya") { _, _ ->
-                // Clear login status
-                sharedPreferences.edit().putBoolean("is_logged_in", false).apply()
+                lifecycleScope.launch {
+                    // Clear user session using UserPreferences
+                    userPreferences.clearUser()
 
-                Toast.makeText(this, "Berhasil keluar", Toast.LENGTH_SHORT).show()
+                    // Also clear old SharedPreferences for backward compatibility
+                    sharedPreferences.edit().clear().apply()
 
-                // Navigate to welcome screen
-                val intent = Intent(this, SelamatDatang::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                finish()
+                    Toast.makeText(this@ProfileActivity, "Berhasil keluar", Toast.LENGTH_SHORT).show()
+
+                    // Navigate to welcome screen
+                    val intent = Intent(this@ProfileActivity, SelamatDatang::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
+                }
             }
             .setNegativeButton("Batal", null)
             .show()

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is a backup of the original logo_dana.xml vector drawable -->
+<!-- Renamed to avoid conflict with logo_dana.png -->
+<!-- Not currently used in the application -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="60dp"
+    android:height="24dp"
+    android:viewportWidth="60"
+    android:viewportHeight="24">
+
+    <path
+        android:fillColor="#118EEA"
+        android:pathData="M0,0h60v24h-60z"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M8,6h8c2.76,0 5,2.24 5,5s-2.24,5 -5,5h-8z M10,8v8h6c1.66,0 3,-1.34 3,-3s-1.34,-3 -3,-3z"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M23,6h3l4,12h-2.5l-0.8,-2.5h-4.4l-0.8,2.5h-2.5z M24.5,9.5l-1.4,4.5h2.8z"/>
+</vector>
+

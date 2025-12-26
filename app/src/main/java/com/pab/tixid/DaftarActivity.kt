@@ -1,30 +1,32 @@
 package com.pab.tixid
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
+import com.pab.tixid.api.RetrofitClient
+import com.pab.tixid.models.RegisterRequest
+import kotlinx.coroutines.launch
 
 class DaftarActivity : AppCompatActivity() {
 
-    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var etNama: TextInputEditText
     private lateinit var etEmail: TextInputEditText
     private lateinit var etPassword: TextInputEditText
     private lateinit var etKonfirmasiPassword: TextInputEditText
     private lateinit var btnDaftar: Button
     private lateinit var btnKembali: ImageView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daftar)
-
-        // Initialize SharedPreferences
-        sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE)
 
         // Initialize views
         etNama = findViewById(R.id.et_nama)
@@ -33,6 +35,10 @@ class DaftarActivity : AppCompatActivity() {
         etKonfirmasiPassword = findViewById(R.id.et_konfirmasi_password)
         btnDaftar = findViewById(R.id.btn_daftar)
         btnKembali = findViewById(R.id.btn_kembali)
+
+        // Add ProgressBar programmatically or add to layout
+        progressBar = ProgressBar(this)
+        progressBar.visibility = View.GONE
 
         // Set click listeners
         btnDaftar.setOnClickListener {
@@ -93,23 +99,76 @@ class DaftarActivity : AppCompatActivity() {
             return
         }
 
-        // Simpan data user ke SharedPreferences
-        val editor = sharedPreferences.edit()
-        editor.putString("user_name", nama)
-        editor.putString("user_email", email)
-        editor.putString("user_password", password)
-        editor.putBoolean("is_logged_in", true)
-        editor.apply()
+        // Show loading
+        btnDaftar.isEnabled = false
+        btnDaftar.text = "Mendaftar..."
 
-        // Debug log untuk memastikan data tersimpan
-        android.util.Log.d("DaftarActivity", "Registered - Name: $nama, Email: $email, Password: $password")
+        // Call API
+        lifecycleScope.launch {
+            try {
+                android.util.Log.d("DaftarActivity", "Sending register request - Name: $nama, Email: $email")
 
-        Toast.makeText(this, "Pendaftaran berhasil! Selamat datang, $nama", Toast.LENGTH_SHORT).show()
+                val response = RetrofitClient.apiService.register(
+                    RegisterRequest(
+                        name = nama,
+                        email = email,
+                        password = password,
+                        phone = "" // You can add phone field in the form if needed
+                    )
+                )
 
-        // Langsung ke HomeActivity setelah berhasil daftar
-        val intent = Intent(this, HomeActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        finish()
+                btnDaftar.isEnabled = true
+                btnDaftar.text = "Daftar"
+
+                android.util.Log.d("DaftarActivity", "Response code: ${response.code()}")
+                android.util.Log.d("DaftarActivity", "Response body: ${response.body()}")
+                android.util.Log.d("DaftarActivity", "Response error: ${response.errorBody()?.string()}")
+
+                if (response.isSuccessful) {
+                    val apiResponse = response.body()
+                    if (apiResponse?.success == true) {
+                        Toast.makeText(
+                            this@DaftarActivity,
+                            "Pendaftaran berhasil! Silakan login",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        android.util.Log.d("DaftarActivity", "Registration successful, navigating to login")
+
+                        // Navigate to Login
+                        val intent = Intent(this@DaftarActivity, MasukActivity::class.java)
+                        intent.putExtra("email", email)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        val errorMsg = apiResponse?.message ?: "Registrasi gagal"
+                        android.util.Log.e("DaftarActivity", "Registration failed: $errorMsg")
+                        Toast.makeText(
+                            this@DaftarActivity,
+                            errorMsg,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string() ?: "Unknown error"
+                    android.util.Log.e("DaftarActivity", "API Error: ${response.code()} - $errorBody")
+                    Toast.makeText(
+                        this@DaftarActivity,
+                        "Error: ${response.code()} - ${response.message()}\n$errorBody",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } catch (e: Exception) {
+                btnDaftar.isEnabled = true
+                btnDaftar.text = "Daftar"
+                android.util.Log.e("DaftarActivity", "Exception during registration", e)
+                Toast.makeText(
+                    this@DaftarActivity,
+                    "Error koneksi: ${e.message}\nPastikan server API sudah berjalan",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 }
+
