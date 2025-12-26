@@ -150,3 +150,17 @@ obj/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# SQL Files - Database dumps
+*.sql
+!schema.sql
+
+# Database backup
+backend_api/database.sql
+backend_api/*_data.sql
+backend_api/backup*.sql
+
+# Batch scripts yang berisi path lokal
+backend_api/copy_to_laragon.bat
+backend_api/cek_database.bat
+backend_api/update_database*.bat
