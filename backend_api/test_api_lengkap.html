@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test TIX-ID API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .test-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+        .result {
+            background: #f7f7f7;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success {
+            border-left-color: #4caf50;
+            color: #2e7d32;
+        }
+        .error {
+            border-left-color: #f44336;
+            color: #c62828;
+        }
+        .loading {
+            border-left-color: #ff9800;
+            color: #e65100;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .status.ok {
+            background: #4caf50;
+            color: white;
+        }
+        .status.error {
+            background: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 TIX-ID API Tester</h1>
+
+        <!-- Test 1: Get Movies -->
+        <div class="test-section">
+            <h2>1. Test Get Movies <span id="status1" class="status"></span></h2>
+            <button onclick="testGetMovies()">📽️ Get All Movies</button>
+            <button onclick="testGetMoviesByStatus('now_showing')">🎥 Get Now Showing</button>
+            <button onclick="testGetMoviesByStatus('coming_soon')">⏳ Get Coming Soon</button>
+            <div id="result1" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Test 2: Login -->
+        <div class="test-section">
+            <h2>2. Test Login <span id="status2" class="status"></span></h2>
+            <div class="input-group">
+                <label>Email:</label>
+                <input type="email" id="email" value="admin@tixid.com" placeholder="Enter email">
+            </div>
+            <div class="input-group">
+                <label>Password:</label>
+                <input type="password" id="password" value="password123" placeholder="Enter password">
+            </div>
+            <button onclick="testLogin()">🔐 Login</button>
+            <button onclick="testLoginUser()">👤 Login as User</button>
+            <div id="result2" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Test 3: Register -->
+        <div class="test-section">
+            <h2>3. Test Register <span id="status3" class="status"></span></h2>
+            <div class="input-group">
+                <label>Name:</label>
+                <input type="text" id="reg_name" value="Test User New" placeholder="Enter name">
+            </div>
+            <div class="input-group">
+                <label>Email:</label>
+                <input type="email" id="reg_email" value="testuser@example.com" placeholder="Enter email">
+            </div>
+            <div class="input-group">
+                <label>Password:</label>
+                <input type="password" id="reg_password" value="password123" placeholder="Enter password">
+            </div>
+            <div class="input-group">
+                <label>Phone:</label>
+                <input type="text" id="reg_phone" value="081234567890" placeholder="Enter phone">
+            </div>
+            <button onclick="testRegister()">📝 Register</button>
+            <div id="result3" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Test 4: Admin Movies -->
+        <div class="test-section">
+            <h2>4. Test Admin Movies API <span id="status4" class="status"></span></h2>
+            <button onclick="testAdminGetMovies()">👑 Get Movies (Admin)</button>
+            <button onclick="testAdminAddMovie()">➕ Add Movie (Admin)</button>
+            <div id="result4" class="result" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost/tix_id_api/';
+
+        function showResult(resultId, statusId, message, isSuccess) {
+            const resultDiv = document.getElementById(resultId);
+            const statusSpan = document.getElementById(statusId);
+
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result ' + (isSuccess ? 'success' : 'error');
+            resultDiv.textContent = message;
+
+            statusSpan.className = 'status ' + (isSuccess ? 'ok' : 'error');
+            statusSpan.textContent = isSuccess ? '✓ OK' : '✗ Error';
+        }
+
+        function showLoading(resultId, statusId) {
+            const resultDiv = document.getElementById(resultId);
+            const statusSpan = document.getElementById(statusId);
+
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result loading';
+            resultDiv.textContent = 'Loading...';
+
+            statusSpan.className = 'status';
+            statusSpan.textContent = '⏳ Loading...';
+        }
+
+        async function testGetMovies() {
+            showLoading('result1', 'status1');
+            try {
+                const response = await fetch(API_URL + 'movies.php');
+                const data = await response.json();
+                showResult('result1', 'status1', JSON.stringify(data, null, 2), data.success);
+            } catch (error) {
+                showResult('result1', 'status1', 'Error: ' + error.message, false);
+            }
+        }
+
+        async function testGetMoviesByStatus(status) {
+            showLoading('result1', 'status1');
+            try {
+                const response = await fetch(API_URL + 'movies.php?status=' + status);
+                const data = await response.json();
+                showResult('result1', 'status1', JSON.stringify(data, null, 2), data.success);
+            } catch (error) {
+                showResult('result1', 'status1', 'Error: ' + error.message, false);
+            }
+        }
+
+        async function testLogin() {
+            showLoading('result2', 'status2');
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(API_URL + 'login.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+                showResult('result2', 'status2', JSON.stringify(data, null, 2), data.success);
+            } catch (error) {
+                showResult('result2', 'status2', 'Error: ' + error.message, false);
+            }
+        }
+
+        async function testLoginUser() {
+            document.getElementById('email').value = 'test@example.com';
+            document.getElementById('password').value = 'password123';
+            await testLogin();
+        }
+
+        async function testRegister() {
+            showLoading('result3', 'status3');
+            const name = document.getElementById('reg_name').value;
+            const email = document.getElementById('reg_email').value;
+            const password = document.getElementById('reg_password').value;
+            const phone = document.getElementById('reg_phone').value;
+
+            try {
+                const response = await fetch(API_URL + 'register.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password, phone })
+                });
+                const data = await response.json();
+                showResult('result3', 'status3', JSON.stringify(data, null, 2), data.success);
+            } catch (error) {
+                showResult('result3', 'status3', 'Error: ' + error.message, false);
+            }
+        }
+
+        async function testAdminGetMovies() {
+            showLoading('result4', 'status4');
+            try {
+                const response = await fetch(API_URL + 'admin_movies.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        admin_email: 'admin@tixid.com',
+                        status: 'now_showing'
+                    })
+                });
+                const data = await response.json();
+                showResult('result4', 'status4', JSON.stringify(data, null, 2), data.success);
+            } catch (error) {
+                showResult('result4', 'status4', 'Error: ' + error.message, false);
+            }
+        }
+
+        async function testAdminAddMovie() {
+            showLoading('result4', 'status4');
+            try {
+                const response = await fetch(API_URL + 'admin_movies.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        admin_email: 'admin@tixid.com',
+                        title: 'Test Movie ' + Date.now(),
+                        poster_url: 'https://via.placeholder.com/300x450',
+                        synopsis: 'This is a test movie added via API',
+                        youtube_url: 'https://www.youtube.com/watch?v=test',
+                        rating: 8.0,
+                        duration: '120 Menit',
+                        genre: 'Action, Drama',
+                        status: 'now_showing',
+                        release_date: '2025-12-23'
+                    })
+                });
+                const data = await response.json();
+                showResult('result4', 'status4', JSON.stringify(data, null, 2), data.success);
+            } catch (error) {
+                showResult('result4', 'status4', 'Error: ' + error.message, false);
+            }
+        }
+
+        // Auto test on load
+        window.onload = function() {
+            console.log('TIX-ID API Tester loaded');
+            console.log('API URL:', API_URL);
+        };
+    </script>
+</body>
+</html>
+
