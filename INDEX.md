@@ -95,10 +95,10 @@ Baca file-file ini secara berurutan:
 - Sample user data
 - Indexes
 
-### [backend_api/config.php](backend_api/config.php)
-**Database configuration**
-- Connection settings
-- Helper functions
+### [backend_api/config.example.php](backend_api/config.example.php)
+**Database configuration template**
+- Copy locally: `cp backend_api/config.example.php backend_api/config.php`
+- Fill in local DB credentials (do NOT commit to Git)
 
 ### [backend_api/register.php](backend_api/register.php)
 **User registration endpoint**
@@ -226,4 +226,3 @@ Follow this order:
 ---
 
 **Happy Coding! 🚀**
-
