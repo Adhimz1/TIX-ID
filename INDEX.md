@@ -96,9 +96,9 @@ Baca file-file ini secara berurutan:
 - Indexes
 
 ### [backend_api/config.example.php](backend_api/config.example.php)
-**Database configuration template**
-- Copy to `config.php` locally
-- Fill in DB credentials (JANGAN di-commit)
+**Template konfigurasi database**
+- Copy ke `config.php` di lokal
+- Isi kredensial database (JANGAN di-commit)
 
 ### [backend_api/register.php](backend_api/register.php)
 **User registration endpoint**
